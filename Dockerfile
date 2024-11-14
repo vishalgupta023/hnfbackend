@@ -1,20 +1,20 @@
 # Use the Node.js image
-FROM node:16
+FROM node:20
 
-# Set the working directory to the server folder
-WORKDIR /app/server
+# Set the working directory to /app
+WORKDIR /app
 
-# Copy the package.json and package-lock.json files
-COPY ./server/package*.json ./
+# Copy package.json and package-lock.json files
+COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the server source code into the container
-COPY ./server .
+# Copy the rest of the application files
+COPY . .
 
-# Expose the port that the server listens on
-EXPOSE 3000
+# Expose the port the server listens on
+EXPOSE 4000
 
-# Command to start the server
+# Start the server
 CMD ["npm", "start"]
