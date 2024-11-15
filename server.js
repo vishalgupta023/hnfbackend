@@ -20,9 +20,9 @@ app.use(cors(
 connectDB()
 app.use(express.json()); // Middleware to parse JSON requests
 
-app.use("/api/v1/auth" , userAuth)
-app.use("/api/v1/" , todoActions)
-app.use("/api/v1/" , userLogs)
+app.use("api/v1/auth" , userAuth)
+app.use("api/v1/" , todoActions)
+app.use("api/v1/" , userLogs)
 
 createSuperAdmin();
 
