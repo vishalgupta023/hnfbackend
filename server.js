@@ -12,17 +12,19 @@ const { createSuperAdmin } = require("./controllers/authController");
 
 const app = express();
 app.use(cookieParser());
-app.use(cors(
-    {origin: process.env.FRONTEND_URL, // Set this to your frontend URL
-    credentials: true}  
-))
+app.use(cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: true // Optional: If you want to allow credentials (cookies, authorization headers, etc.)
+  }));
 
 connectDB()
 app.use(express.json()); // Middleware to parse JSON requests
 
-app.use("api/v1/auth" , userAuth)
-app.use("api/v1/" , todoActions)
-app.use("api/v1/" , userLogs)
+app.use("/api/v1/auth" , userAuth)
+app.use("/api/v1/" , todoActions)
+app.use("/api/v1/" , userLogs)
 
 createSuperAdmin();
 
